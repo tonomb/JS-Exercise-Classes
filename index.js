@@ -100,10 +100,10 @@ class Car {
   }
 }
 
-const testCar = new Car('Mazda 5', 10);
-testCar.fill(10);
-testCar.drive(110);
-console.log(testCar);
+// const testCar = new Car('Mazda 5', 10);
+// testCar.fill(10);
+// testCar.drive(110);
+// console.log(testCar);
 
 /*
   TASK 3
@@ -118,7 +118,14 @@ console.log(testCar);
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(arrgs){
+    this.name = arrgs.name;
+    this.age = arrgs. age;
+    this.location = arrgs.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 }
 
 /*
