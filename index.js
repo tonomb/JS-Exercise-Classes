@@ -153,9 +153,32 @@ class Instructor extends Lambdasian {
     return `Today we are learning about ${subject}`
   }
   grade(student, subject){
-    return `${student.name} receives a perfect score on ${subject}`
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
+  gradeStudent(student){
+    const operation = Math.round(Math.random());
+    const score = Math.round(Math.random() * 20);
+    const startingGrade = student.grade
+    if(operation === 1){
+      student.grade += score;
+      if(student.grade > 100){
+        student.grade = 100;
+      }
+    } else{
+      student.grade -= score;
+      if(student.grade < 0){
+        student.grade = 0;
+      }
+    }
+    return `starting grade was ${startingGrade} now grade is ${student.grade}`
   }
 }
+
+const testInstructor = new Instructor({
+  name: 'britt',
+  location: 'canada',
+  age:'35'
+});
 
 /*
   TASK 5
@@ -178,6 +201,7 @@ class Student extends Lambdasian {
     this.previousBackground = attrs.previousBackground;
     this.className = attrs.className;
     this.favSubjects = attrs.favSubjects;
+    this.grade = Math.round(Math.random()* 100)
   }
   listSubjects(){
     let say = 'Loving '
@@ -195,20 +219,30 @@ class Student extends Lambdasian {
     return `${this.name} has submitted a PR for ${subject}`
   }
   sprintChallenge(subject){
-    return `${this.name} has begun sprint challenge on ${subject}`
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
+  graduate(){
+    if(this.grade >=70){
+      return `Congrats, Lambda has endorsed you`
+    } else {
+      return `Your not there yet, keeps studying`
+    }
   }
 }
 
-// const testStudent = new Student({
-//   name: 'antonio',
-//   age: 27,
-//   location: 'Mexico city',
-//   previousBackground: 'founder',
-//   className: 'web32',
-//   favSubjects: ['html', 'javascript', 'react', 'css']
-// });
+const testStudent = new Student({
+  name: 'antonio',
+  age: 27,
+  location: 'Mexico city',
+  previousBackground: 'founder',
+  className: 'web32',
+  favSubjects: ['html', 'javascript', 'react', 'css'],
+});
 
-// console.log(testStudent.listSubjects());
+console.log(testStudent);
+console.log(testInstructor.gradeStudent(testStudent));
+console.log(testStudent.graduate());
+
 
 /*
   TASK 6
@@ -240,7 +274,7 @@ class ProjectManager extends Instructor {
 
 /*
   STRETCH PROBLEM (no tests!)
-    - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+    - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100. 
     - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
     - Add a graduate method to a student.
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
