@@ -191,18 +191,24 @@ class Student extends Lambdasian {
     })
     return say
   }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
 
-const testStudent = new Student({
-  name: 'antonio',
-  age: 27,
-  location: 'Mexico city',
-  previousBackground: 'founder',
-  className: 'web32',
-  favSubjects: ['html', 'javascript', 'react', 'css']
-});
+// const testStudent = new Student({
+//   name: 'antonio',
+//   age: 27,
+//   location: 'Mexico city',
+//   previousBackground: 'founder',
+//   className: 'web32',
+//   favSubjects: ['html', 'javascript', 'react', 'css']
+// });
 
-console.log(testStudent.listSubjects());
+// console.log(testStudent.listSubjects());
 
 /*
   TASK 6
