@@ -172,9 +172,37 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian {
+  constructor(attrs){
+    super(attrs);
+    this.previousBackground = attrs.previousBackground;
+    this.className = attrs.className;
+    this.favSubjects = attrs.favSubjects;
+  }
+  listSubjects(){
+    let say = 'Loving '
+    this.favSubjects.forEach((subject, index) =>{
+      if(index < this.favSubjects.length - 1){
+        say = say + ' ' + subject + ',';
+      } else if( index  === this.favSubjects.length - 1){
+        say = say + ' ' + subject + '!'
+      }
+      
+    })
+    return say
+  }
 }
+
+const testStudent = new Student({
+  name: 'antonio',
+  age: 27,
+  location: 'Mexico city',
+  previousBackground: 'founder',
+  className: 'web32',
+  favSubjects: ['html', 'javascript', 'react', 'css']
+});
+
+console.log(testStudent.listSubjects());
 
 /*
   TASK 6
